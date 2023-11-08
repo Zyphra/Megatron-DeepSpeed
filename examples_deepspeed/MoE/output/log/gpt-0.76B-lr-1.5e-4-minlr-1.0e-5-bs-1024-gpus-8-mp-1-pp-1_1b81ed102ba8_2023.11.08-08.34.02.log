@@ -1,0 +1,1711 @@
+/usr/local/bin/deepspeed:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').require('deepspeed==0.11.2+b4615fb8')
+[2023-11-08 08:34:05,423] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:08,886] [WARNING] [runner.py:203:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2023-11-08 08:34:08,946] [INFO] [runner.py:570:main] cmd = /usr/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py --override-opt_param-scheduler --adam-beta1 0.9 --adam-beta2 0.95 --tensor-model-parallel-size 1 --moe-expert-parallel-size 1 --num-experts 1 --moe-loss-coeff 0.01 --moe-train-capacity-factor 1.0 --moe-eval-capacity-factor 1.0 --moe-min-capacity 4 --init-method-std 0.014 --lr-decay-tokens 260000000000 --lr-warmup-tokens 375000000 --micro-batch-size 16 --exit-duration-in-mins 30000000 --global-batch-size 1024 --num-layers 24 --hidden-size 1536 --num-attention-heads 16 --seq-length 2048 --max-position-embeddings 2048 --train-tokens 5700000000000 --train-samples 8349609375 --lr 1.5e-4 --min-lr 1.0e-5 --lr-decay-style cosine --split 98,2,0 --log-interval 10 --eval-interval 100 --eval-iters 10 --save-interval 1000 --weight-decay 0.1 --clip-grad 1.0 --hysteresis 2 --num-workers 0 --fp16 --load /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1 --save /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1 --tensorboard-queue-size 1 --log-timers-to-tensorboard --log-batch-size-to-tensorboard --log-validation-ppl-to-tensorboard --tensorboard-dir /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/tensorboard/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1_1b81ed102ba8_2023.11.08-08.34.02 --checkpoint-activations --vocab-file /datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/vocab.json --merge-file /datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/merges.txt --data-path /datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/train_text_document --data-impl mmap --deepspeed --deepspeed_config ds_config_gpt_gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1.json --pipeline-model-parallel-size 1 --deepspeed-activation-checkpointing
+[2023-11-08 08:34:11,792] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:12,916] [INFO] [launch.py:138:main] 0 NCCL_VERSION=2.19.3
+[2023-11-08 08:34:12,916] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2023-11-08 08:34:12,917] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=8, node_rank=0
+[2023-11-08 08:34:12,917] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2023-11-08 08:34:12,917] [INFO] [launch.py:163:main] dist_world_size=8
+[2023-11-08 08:34:12,917] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+[2023-11-08 08:34:19,420] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:19,493] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:19,871] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:20,776] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:20,776] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:20,795] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:20,806] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:21,103] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:21,842] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[2023-11-08 08:34:21,880] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+[2023-11-08 08:34:22,216] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+[2023-11-08 08:34:23,288] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:23,321] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:23,401] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:24,190] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+INFO: overriding default arguments for tokenizer_type:None                    with tokenizer_type:GPT2BPETokenizer
+using world size: 8, data-parallel-size: 8, sequence-parallel size: 1, tensor-model-parallel size: 1, pipeline-model-parallel size: 1 
+using torch.float16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. False
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.95
+  adam_eps ........................................ 1e-08
+  add_bias_linear ................................. True
+  add_position_embedding .......................... True
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  aml_data_download_path .......................... None
+  apply_layernorm_1p .............................. False
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  async_tensor_model_parallel_allreduce ........... False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  barrier_with_L1_time ............................ True
+  bert_binary_head ................................ True
+  bert_embedder_type .............................. megatron
+  bert_load ....................................... None
+  bf16 ............................................ False
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  checkpoint_activations .......................... True
+  checkpoint_in_cpu ............................... False
+  checkpoint_num_layers ........................... 1
+  classes_fraction ................................ 1.0
+  clip_grad ....................................... 1.0
+  compression_training ............................ False
+  consumed_train_samples .......................... 0
+  consumed_train_tokens ........................... 0
+  consumed_valid_samples .......................... 0
+  contigious_checkpointing ........................ False
+  cpu_optimizer ................................... False
+  cpu_torch_adam .................................. False
+  create_moe_param_group .......................... False
+  curriculum_learning_legacy ...................... False
+  data_cache_path ................................. None
+  data_efficiency_curriculum_learning ............. False
+  data_impl ....................................... mmap
+  data_parallel_random_init ....................... False
+  data_parallel_size .............................. 8
+  data_path ....................................... ['/datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/train_text_document']
+  data_per_class_fraction ......................... 1.0
+  data_sharding ................................... True
+  dataloader_type ................................. single
+  DDP_impl ........................................ local
+  decoder_num_layers .............................. None
+  decoder_seq_length .............................. None
+  deepscale ....................................... False
+  deepscale_config ................................ None
+  deepspeed ....................................... True
+  deepspeed_activation_checkpointing .............. True
+  deepspeed_config ................................ ds_config_gpt_gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1.json
+  deepspeed_mpi ................................... False
+  dino_bottleneck_size ............................ 256
+  dino_freeze_last_layer .......................... 1
+  dino_head_hidden_size ........................... 2048
+  dino_local_crops_number ......................... 10
+  dino_local_img_size ............................. 96
+  dino_norm_last_layer ............................ False
+  dino_teacher_temp ............................... 0.07
+  dino_warmup_teacher_temp ........................ 0.04
+  dino_warmup_teacher_temp_epochs ................. 30
+  distribute_checkpointed_activations ............. False
+  distribute_saved_activations .................... False
+  distributed_backend ............................. nccl
+  distributed_timeout_minutes ..................... 10
+  ds_inference .................................... False
+  ds_pipeline_enabled ............................. True
+  ds_sequence_parallel_size ....................... 1
+  embedding_path .................................. None
+  embedding_weights_in_fp32 ....................... False
+  empty_unused_memory_level ....................... 0
+  enable_expert_tensor_parallelism ................ False
+  encoder_num_layers .............................. 24
+  encoder_seq_length .............................. 2048
+  end_weight_decay ................................ 0.1
+  eod_mask_loss ................................... False
+  eval_interval ................................... 100
+  eval_iters ...................................... 10
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... 30000000
+  exit_interval ................................... None
+  exit_on_missing_checkpoint ...................... False
+  exit_signal_handler ............................. False
+  expert_interval ................................. 2
+  ffn_hidden_size ................................. 6144
+  finetune ........................................ False
+  force_ds_sequence_parallel ...................... False
+  fp16 ............................................ True
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  fp8_amax_compute_algo ........................... most_recent
+  fp8_amax_history_len ............................ 1
+  fp8_e4m3 ........................................ False
+  fp8_hybrid ...................................... False
+  fp8_interval .................................... 1
+  fp8_margin ...................................... 0
+  fp8_wgrad ....................................... True
+  global_batch_size ............................... 1024
+  gradient_accumulation_fusion .................... True
+  head_lr_mult .................................... 1.0
+  hidden_dropout .................................. 0.1
+  hidden_size ..................................... 1536
+  hidden_size_teacher ............................. None
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_h ........................................... 224
+  img_w ........................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  inference ....................................... False
+  inference_batch_times_seqlen_threshold .......... 512
+  init_method_std ................................. 0.014
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  iter_per_epoch .................................. 1250
+  kd .............................................. False
+  kd_alpha_ce ..................................... 1
+  kd_beta_ce ...................................... 1
+  kd_temp ......................................... 1.0
+  kv_channels ..................................... 96
+  layernorm_epsilon ............................... 1e-05
+  lazy_mpu_init ................................... None
+  load ............................................ /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1
+  load_teacher .................................... None
+  local_rank ...................................... 0
+  log_batch_size_to_tensorboard ................... True
+  log_interval .................................... 10
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... False
+  log_num_zeros_in_grad ........................... False
+  log_optimizer_states_to_tensorboard ............. False
+  log_params_norm ................................. False
+  log_timers_to_tensorboard ....................... True
+  log_validation_ppl_to_tensorboard ............... True
+  log_world_size_to_tensorboard ................... False
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 0.00015
+  lr_decay_iters .................................. None
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_decay_tokens ................................. 260000000000
+  lr_warmup_fraction .............................. None
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  lr_warmup_tokens ................................ 375000000
+  make_vocab_size_divisible_by .................... 128
+  mask_factor ..................................... 1.0
+  mask_prob ....................................... 0.15
+  mask_type ....................................... random
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 2048
+  max_tokens_to_oom ............................... 12000
+  mem_efficient_ln ................................ True
+  memory_centric_tiled_linear ..................... False
+  merge_file ...................................... /datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/merges.txt
+  micro_batch_size ................................ 16
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 1e-05
+  mlp_type ........................................ standard
+  mmap_warmup ..................................... False
+  moe_eval_capacity_factor ........................ 1.0
+  moe_expert_parallel_size ........................ 1
+  moe_loss_coeff .................................. 0.01
+  moe_min_capacity ................................ 4
+  moe_token_dropping .............................. True
+  moe_train_capacity_factor ....................... 1.0
+  mos ............................................. False
+  no_load_lr_state ................................ False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_persist_layer_norm ........................... False
+  no_pipeline_parallel ............................ False
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  normalization ................................... layernorm
+  num_attention_heads ............................. 16
+  num_attention_heads_teacher ..................... None
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_experts ..................................... [1]
+  num_experts_switch .............................. None
+  num_experts_teacher ............................. [1]
+  num_key_value_heads ............................. 16
+  num_layers ...................................... 24
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_layers_teacher .............................. None
+  num_workers ..................................... 0
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  output_bert_embeddings .......................... False
+  overlap_p2p_comm ................................ False
+  override_opt_param_scheduler .................... True
+  params_dtype .................................... torch.float16
+  partition_activations ........................... False
+  patch_dim ....................................... 16
+  perform_initialization .......................... True
+  pipeline_model_parallel_size .................... 1
+  pipeline_model_parallel_split_rank .............. None
+  profile_backward ................................ False
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  random_ltd ...................................... False
+  rank ............................................ 0
+  recompute_granularity ........................... None
+  recompute_method ................................ None
+  recompute_num_layers ............................ 1
+  remote_device ................................... none
+  reset_attention_mask ............................ False
+  reset_iteration ................................. False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  retro_add_retriever ............................. False
+  retro_cyclic_train_iters ........................ None
+  retro_encoder_attention_dropout ................. 0.1
+  retro_encoder_hidden_dropout .................... 0.1
+  retro_encoder_layers ............................ 2
+  retro_num_neighbors ............................. 2
+  retro_num_retrieved_chunks ...................... 2
+  retro_return_doc_ids ............................ False
+  retro_workdir ................................... None
+  return_data_index ............................... False
+  rotary_percent .................................. 1.0
+  sample_rate ..................................... 1.0
+  save ............................................ /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1
+  save_interval ................................... 1000
+  scatter_gather_tensors_in_pipeline .............. True
+  scattered_embeddings ............................ False
+  seed ............................................ 1234
+  seq_length ...................................... 2048
+  sequence_parallel ............................... False
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  skip_train ...................................... False
+  split ........................................... 98,2,0
+  split_transformers .............................. False
+  squared_relu .................................... False
+  standalone_embedding_stage ...................... False
+  start_weight_decay .............................. 0.1
+  swiglu .......................................... False
+  swin_backbone_type .............................. tiny
+  synchronize_each_layer .......................... False
+  tensor_model_parallel_size ...................... 1
+  tensorboard_dir ................................. /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/tensorboard/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1_1b81ed102ba8_2023.11.08-08.34.02
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1
+  test_data_path .................................. None
+  tile_factor ..................................... 1
+  timing_log_level ................................ 0
+  timing_log_option ............................... minmax
+  titles_data_path ................................ None
+  tokenizer_model ................................. None
+  tokenizer_type .................................. GPT2BPETokenizer
+  topk ............................................ 1
+  train_data_exact_num_epochs ..................... None
+  train_data_path ................................. None
+  train_desc_path ................................. None
+  train_doc_idx_path .............................. None
+  train_idx_path .................................. None
+  train_iters ..................................... None
+  train_sample_idx_path ........................... None
+  train_samples ................................... 8349609375
+  train_shuffle_idx_path .......................... None
+  train_tokens .................................... 5700000000000
+  transformer_impl ................................ local
+  transformer_pipeline_model_parallel_size ........ 1
+  universal_checkpoint ............................ False
+  untie_embeddings_and_output_weights ............. False
+  use_checkpoint_args ............................. False
+  use_checkpoint_opt_param_scheduler .............. False
+  use_contiguous_buffers_in_local_ddp ............. True
+  use_cpu_initialization .......................... None
+  use_dataset_only ................................ False
+  use_distributed_optimizer ....................... False
+  use_flash_attn .................................. False
+  use_flash_attn_triton ........................... False
+  use_flash_attn_v1 ............................... False
+  use_flash_attn_v2 ............................... False
+  use_one_sent_docs ............................... False
+  use_pin_memory .................................. False
+  use_ring_exchange_p2p ........................... False
+  use_rotary_position_embeddings .................. False
+  use_tutel ....................................... False
+  valid_data_path ................................. None
+  variable_seq_lengths ............................ False
+  virtual_pipeline_model_parallel_size ............ None
+  vision_backbone_type ............................ vit
+  vision_pretraining .............................. False
+  vision_pretraining_type ......................... classify
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/vocab.json
+  vocab_size ...................................... None
+  weight_decay .................................... 0.1
+  weight_decay_incr_style ......................... constant
+  world_size ...................................... 8
+  zero_allgather_bucket_size ...................... 0.0
+  zero_contigious_gradients ....................... False
+  zero_reduce_bucket_size ......................... 0.0
+  zero_reduce_scatter ............................. False
+  zero_stage ...................................... 1.0
+-------------------- end of arguments ---------------------
+setting number of micro-batches to constant 8
+> building GPT2BPETokenizer tokenizer ...
+ > padded vocab (size: 50277) with 27 dummy tokens (new size: 50304)
+> initializing torch distributed ...
+[2023-11-08 08:34:24,379] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:24,380] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2023-11-08 08:34:24,504] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[2023-11-08 08:34:24,538] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-08 08:34:24,538] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+----------------------------------------------------------------------------------------------------
+
+DeepSpeed C++/CUDA extension op reportDeepSpeed C++/CUDA extension op report
+
+----------------------------------------------------------------------------------------------------
+
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+
+----------------------------------------------------------------------------------------------------
+
+JIT compiled ops requires ninjaJIT compiled ops requires ninja
+
+ninjaninja  ....................................  [92m[OKAY][0m[92m[OKAY][0m
+
+----------------------------------------------------------------------------------------------------
+
+op nameop name  ................................  installedinstalled  ....  compatiblecompatible
+
+----------------------------------------------------------------------------------------------------
+
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............[93m [WARNING] [0m async_io: please install the libaio-dev package with apt 
+[93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.[93m[NO][0m
+ .......async_io  [92m[OKAY][0m...............
+ [93m[NO][0m [93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH.......
+ evoformer_attn[93m[NO][0m 
+......... fused_adam[93m[NO][0m  ....................  [93m[NO][0m[93m[NO][0m 
+....... fused_lamb[92m[OKAY][0m 
+.............cpu_adam  [93m[NO][0m...............  .......[93m[NO][0m  [92m[OKAY][0m.......
+ fused_lion[92m[OKAY][0m 
+.............cpu_adagrad  [93m[NO][0m............  .......[93m[NO][0m  [92m[OKAY][0m.......
+ [92m[OKAY][0mquantizer
+ cpu_lion..............  ...............[93m[NO][0m  [93m[NO][0m.......  .......[92m[OKAY][0m 
+[92m[OKAY][0mrandom_ltd
+ .............[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH 
+[93m[NO][0mevoformer_attn  ................  [92m[OKAY][0m[93m[NO][0m
+ ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m .......[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1 
+[92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1 
+............ [93m[NO][0m ....... [93m[NO][0m
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+[2023-11-08 08:34:24,645] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.1
+[93m [WARNING] [0m using untested triton version (2.1.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/usr/local/lib/python3.10/dist-packages/torch']
+torch version .................... 2.1.0a0+32f93b1
+deepspeed install path ........... ['/workspace/DeepSpeed/deepspeed']
+deepspeed info ................... 0.11.2+b4615fb8, b4615fb8, master
+torch cuda version ............... 12.2
+torch hip version ................ None
+nvcc version ..................... 12.2
+deepspeed wheel compiled w. ...... torch 2.1, cuda 12.2
+shared memory (/dev/shm) size .... 1.76 TB
+**** Git info for Megatron: git_hash=30f148b git_branch=main ****
+[2023-11-08 08:34:25,226] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:25,227] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-08 08:34:25,227] [INFO] [comm.py:637:init_distributed] cdb=None
+> setting tensorboard ...
+[2023-11-08 08:34:25,529] [INFO] [comm.py:637:init_distributed] cdb=None
+> initialized tensor model parallel with size 1
+> initialized pipeline model parallel with size 1
+> setting random seeds to 1234 ...
+[2023-11-08 08:34:25,540] [INFO] [checkpointing.py:227:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 3952 and data parallel seed: 1234
+> compiling dataset index builder ...
+make: Entering directory '/workspace/Megatron-DeepSpeed/megatron/data'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/workspace/Megatron-DeepSpeed/megatron/data'
+>>> done with dataset index builder. Compilation time: 0.054 seconds
+> compiling and loading fused kernels ...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_upper_triang_masked_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_upper_triang_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_masked_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_softmax_cuda...
+>>> done with compiling and loading fused kernels. Compilation time: 8.109 seconds
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/initialize.py:358: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+/workspace/Megatron-DeepSpeed/megatron/training.py:133: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = get_accelerator().DoubleTensor([_TRAIN_START_TIME])
+time to initialize megatron (seconds): 13.739
+[after megatron is initialized] datetime: 2023-11-08 08:34:35 
+building GPT model ...
+[2023-11-08 08:34:35,239] [INFO] [utils.py:802:see_memory_usage] Before Building Model
+[2023-11-08 08:34:35,239] [INFO] [utils.py:803:see_memory_usage] MA 0.0 GB         Max_MA 6.38 GB         CA 0.0 GB         Max_CA 6 GB 
+[2023-11-08 08:34:35,239] [INFO] [utils.py:810:see_memory_usage] CPU Virtual Memory:  used = 31.5 GB, percent = 1.6%
+SEED_LAYERS=False BASE_SEED=1234 SEED_FN=None
+Using topology: {ProcessCoord(pipe=0, data=0, model=0): 0, ProcessCoord(pipe=0, data=1, model=0): 1, ProcessCoord(pipe=0, data=2, model=0): 2, ProcessCoord(pipe=0, data=3, model=0): 3, ProcessCoord(pipe=0, data=4, model=0): 4, ProcessCoord(pipe=0, data=5, model=0): 5, ProcessCoord(pipe=0, data=6, model=0): 6, ProcessCoord(pipe=0, data=7, model=0): 7}
+[2023-11-08 08:34:35,241] [INFO] [module.py:375:_partition_layers] Partitioning pipeline stages with method type:transformer
+stage=0 layers=29
+     0: _to_float16
+     1: EmbeddingPipe
+     2: ParallelTransformerLayerPipe
+     3: ParallelTransformerLayerPipe
+     4: ParallelTransformerLayerPipe
+     5: ParallelTransformerLayerPipe
+     6: ParallelTransformerLayerPipe
+     7: ParallelTransformerLayerPipe
+     8: ParallelTransformerLayerPipe
+     9: ParallelTransformerLayerPipe
+    10: ParallelTransformerLayerPipe
+    11: ParallelTransformerLayerPipe
+    12: ParallelTransformerLayerPipe
+    13: ParallelTransformerLayerPipe
+    14: ParallelTransformerLayerPipe
+    15: ParallelTransformerLayerPipe
+    16: ParallelTransformerLayerPipe
+    17: ParallelTransformerLayerPipe
+    18: ParallelTransformerLayerPipe
+    19: ParallelTransformerLayerPipe
+    20: ParallelTransformerLayerPipe
+    21: ParallelTransformerLayerPipe
+    22: ParallelTransformerLayerPipe
+    23: ParallelTransformerLayerPipe
+    24: ParallelTransformerLayerPipe
+    25: ParallelTransformerLayerPipe
+    26: MixedFusedLayerNorm
+    27: EmbeddingPipe
+    28: float16_to_fp32
+  loss: CrossEntropy
+[2023-11-08 08:34:35,400] [INFO] [utils.py:802:see_memory_usage] After Building Model
+[2023-11-08 08:34:35,401] [INFO] [utils.py:803:see_memory_usage] MA 1.44 GB         Max_MA 1.45 GB         CA 1.5 GB         Max_CA 2 GB 
+[2023-11-08 08:34:35,401] [INFO] [utils.py:810:see_memory_usage] CPU Virtual Memory:  used = 31.51 GB, percent = 1.6%
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 760372224
+setting training iterations to 8153915
+> learning rate decay style: cosine
+DeepSpeed is enabled.
+[2023-11-08 08:34:35,403] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed info: version=0.11.2+b4615fb8, git-hash=b4615fb8, git-branch=master
+wandb: Currently logged in as: berenmillidge. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.16.0
+wandb: Run data is saved locally in /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/wandb/run-20231108_083436-x7pu7p6x
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run wise-universe-84
+wandb: ⭐️ View project at https://wandb.ai/berenmillidge/moe
+wandb: 🚀 View run at https://wandb.ai/berenmillidge/moe/runs/x7pu7p6x
+[2023-11-08 08:34:44,063] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[2023-11-08 08:34:44,065] [INFO] [logging.py:96:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[2023-11-08 08:34:44,065] [INFO] [logging.py:96:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2023-11-08 08:34:44,075] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2023-11-08 08:34:44,076] [INFO] [logging.py:96:log_dist] [Rank 0] Creating fp16 optimizer with dynamic loss scale
+[2023-11-08 08:34:44,273] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Final Optimizer = FusedAdam
+[2023-11-08 08:34:44,274] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[2023-11-08 08:34:44,274] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed LR Scheduler = <megatron.optimizer_param_scheduler.OptimizerParamScheduler object at 0x7fa199c970d0>
+[2023-11-08 08:34:44,274] [INFO] [logging.py:96:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95)]
+[2023-11-08 08:34:44,275] [INFO] [config.py:972:print] DeepSpeedEngine configuration:
+[2023-11-08 08:34:44,275] [INFO] [config.py:976:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2023-11-08 08:34:44,276] [INFO] [config.py:976:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2023-11-08 08:34:44,276] [INFO] [config.py:976:print]   amp_enabled .................. False
+[2023-11-08 08:34:44,276] [INFO] [config.py:976:print]   amp_params ................... False
+[2023-11-08 08:34:44,277] [INFO] [config.py:976:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": "autotuning_results", 
+    "exps_dir": "autotuning_exps", 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2023-11-08 08:34:44,277] [INFO] [config.py:976:print]   bfloat16_enabled ............. False
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   checkpoint_parallel_write_pipeline  False
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   checkpoint_tag_validation_enabled  True
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   checkpoint_tag_validation_fail  False
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7fa1996ccf70>
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   communication_data_type ...... None
+[2023-11-08 08:34:44,278] [INFO] [config.py:976:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   curriculum_enabled_legacy .... False
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   curriculum_params_legacy ..... {'curriculum_type': 'seqlen', 'min_difficulty': 80, 'max_difficulty': 2048, 'schedule_type': 'fixed_linear', 'schedule_config': {'total_curriculum_step': 55069, 'difficulty_step': 8}}
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   data_efficiency_enabled ...... False
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   dataloader_drop_last ......... False
+[2023-11-08 08:34:44,279] [INFO] [config.py:976:print]   disable_allgather ............ False
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   dump_state ................... False
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   dynamic_loss_scale_args ...... {'init_scale': 2048, 'scale_window': 500, 'delayed_shift': 2, 'consecutive_hysteresis': False, 'min_scale': 1}
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   eigenvalue_enabled ........... False
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   eigenvalue_gas_boundary_resolution  1
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   eigenvalue_layer_num ......... 0
+[2023-11-08 08:34:44,280] [INFO] [config.py:976:print]   eigenvalue_max_iter .......... 100
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   eigenvalue_stability ......... 1e-06
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   eigenvalue_tol ............... 0.01
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   eigenvalue_verbose ........... False
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   elasticity_enabled ........... False
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "recompute_fwd_factor": 0.0, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2023-11-08 08:34:44,281] [INFO] [config.py:976:print]   fp16_auto_cast ............... False
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   fp16_enabled ................. True
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   fp16_master_weights_and_gradients  False
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   global_rank .................. 0
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   grad_accum_dtype ............. None
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   gradient_accumulation_steps .. 8
+[2023-11-08 08:34:44,282] [INFO] [config.py:976:print]   gradient_clipping ............ 1.0
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   gradient_predivide_factor .... 1.0
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   initial_dynamic_scale ........ 2048
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   load_universal_checkpoint .... False
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   loss_scale ................... 0
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   memory_breakdown ............. False
+[2023-11-08 08:34:44,283] [INFO] [config.py:976:print]   mics_hierarchial_params_gather  False
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   mics_shard_size .............. -1
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') wandb=WandbConfig(enabled=True, group='BerenMillidge', team='BerenMillidge', project='moe') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') enabled=True
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   nebula_config ................ {
+    "enabled": false, 
+    "persistent_storage_path": null, 
+    "persistent_time_interval": 100, 
+    "num_of_version_in_retention": 2, 
+    "enable_nebula_load": true, 
+    "load_path": null
+}
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   optimizer_legacy_fusion ...... False
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   optimizer_name ............... None
+[2023-11-08 08:34:44,284] [INFO] [config.py:976:print]   optimizer_params ............. None
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   pld_enabled .................. False
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   pld_params ................... False
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   prescale_gradients ........... True
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   scheduler_name ............... None
+[2023-11-08 08:34:44,285] [INFO] [config.py:976:print]   scheduler_params ............. None
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   seq_parallel_communication_data_type  torch.float32
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   sparse_attention ............. None
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   sparse_gradients_enabled ..... False
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   steps_per_print .............. 10
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   train_batch_size ............. 1024
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   train_micro_batch_size_per_gpu  16
+[2023-11-08 08:34:44,286] [INFO] [config.py:976:print]   use_node_local_storage ....... False
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   wall_clock_breakdown ......... False
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   weight_quantization_config ... None
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   world_size ................... 8
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   zero_allow_untested_optimizer  False
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   zero_config .................. stage=0 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500,000,000 allgather_partitions=True allgather_bucket_size=500,000,000 overlap_comm=False load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1,000,000,000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50,000,000 param_persistence_threshold=100,000 model_persistence_threshold=sys.maxsize max_live_parameters=1,000,000,000 max_reuse_distance=1,000,000,000 gather_16bit_weights_on_model_save=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[2023-11-08 08:34:44,287] [INFO] [config.py:976:print]   zero_enabled ................. False
+[2023-11-08 08:34:44,288] [INFO] [config.py:976:print]   zero_force_ds_cpu_optimizer .. True
+[2023-11-08 08:34:44,288] [INFO] [config.py:976:print]   zero_optimization_stage ...... 0
+[2023-11-08 08:34:44,288] [INFO] [config.py:962:print_user_config]   json = {
+    "train_batch_size": 1.024000e+03, 
+    "train_micro_batch_size_per_gpu": 16, 
+    "steps_per_print": 10, 
+    "zero_optimization": {
+        "stage": 0
+    }, 
+    "gradient_clipping": 1.0, 
+    "prescale_gradients": true, 
+    "fp16": {
+        "enabled": true, 
+        "loss_scale": 0, 
+        "loss_scale_window": 500, 
+        "hysteresis": 2, 
+        "min_loss_scale": 1, 
+        "initial_scale_power": 11
+    }, 
+    "bf16": {
+        "enabled": false
+    }, 
+    "curriculum_learning": {
+        "enabled": false, 
+        "curriculum_type": "seqlen", 
+        "min_difficulty": 80, 
+        "max_difficulty": 2.048000e+03, 
+        "schedule_type": "fixed_linear", 
+        "schedule_config": {
+            "total_curriculum_step": 5.506900e+04, 
+            "difficulty_step": 8
+        }
+    }, 
+    "wandb": {
+        "enabled": true, 
+        "group": "BerenMillidge", 
+        "team": "BerenMillidge", 
+        "project": "moe"
+    }, 
+    "wall_clock_breakdown": false
+}
+[2023-11-08 08:34:44,288] [INFO] [engine.py:99:__init__] CONFIG: micro_batches=8 micro_batch_size=16
+[2023-11-08 08:34:45,091] [INFO] [engine.py:154:__init__] RANK=0 STAGE=0 LAYERS=29 [0, 29) STAGE_PARAMS=760372224 (760.372M) TOTAL_PARAMS=760372224 (760.372M) UNIQUE_PARAMS=760372224 (760.372M)
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+WARNING: could not find the metadata file /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1 [2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+
+    will not load any checkpoints and will start from random[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+
+[2023-11-08 08:34:45,155] [WARNING] [engine.py:2695:load_checkpoint] Unable to find latest file at /workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+(min, max) time across ranks (ms):
+    load-checkpoint ................................: (1.37, 1.50)
+[after model, optimizer, and learning rate scheduler are built] datetime: 2023-11-08 08:34:45 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      8349609375
+    validation: 834969600
+    test:       10240
+> building train, validation, and test datasets for GPT ...
+Single data path provided for train, valid & test
+ > building dataset index ...
+    reading sizes...
+    reading pointers...
+    reading document index...
+    creating numpy buffer of mmap...
+    creating memory view of numpy buffer...
+ > finished creating indexed dataset in 87.659009 seconds
+    number of documents: 590394625
+ > dataset split:
+    train:
+     document indices in [0, 578586733) total of 578586733 documents
+    validation:
+     document indices in [578586733, 590394625) total of 11807892 documents
+    test:
+     document indices in [590394625, 590394625) total of 0 documents
+ > WARNING: could not find index map files, building the indices on rank 0 ...
+ > last epoch number of samples (237488919) is larger than 80% of number of samples per epoch (289718587), setting separate_last_epoch to False
+ > elasped time to build and save doc-idx mapping (seconds): 1225.821124
+    using:
+     number of documents:       578586733
+     number of epochs:          29
+     sequence length:           2048
+     total number of samples:   8401839043
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    build_train_valid_test_data_loaders(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+        = build_train_valid_test_data_iterators(train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)    
+build_train_valid_test_data_loaders(  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(    
+build_train_valid_test_data_loaders(  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+    train_dataset = build_dataset(0, 'train')
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+        train_ds, valid_ds, test_ds = build_train_valid_test_datasets(dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,
+
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+    _build_index_mappings(self.name, data_prefix,    
+train_ds, valid_ds, test_ds = build_train_valid_test_datasets(  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+        train_dataset = build_dataset(0, 'train')train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+        dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,return _build_train_valid_test_datasets(data_prefix[0],
+
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+        train_dataset = build_dataset(0, 'train')_build_index_mappings(self.name, data_prefix,    
+
+work = group.allreduce([tensor], opts)  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+
+RuntimeError:     [3] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7fe8b99a8449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7fe8b99631d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7fe86b59f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7fe86b59f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7fe86b59f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fe86b5582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fe86b5582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fe86b5582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fe86b5582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7fe81e8e53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7fe81e8e8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7fe81e8f4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7fe81e8f62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7fe81e8f8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7fe86b546f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7fe86b55766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7fe86b560b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7fe86b56f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7fe871d30c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7fe871540407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x55ba47a34e0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x55ba47a2b5eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x55ba47a437bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x55ba47a238a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x55ba47a44192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x55ba47a202c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x55ba47a1f0d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x55ba47a1f0d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x55ba47a2a82d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x55ba47a3f7e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x55ba47a2b58c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x55ba47a24908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x55ba47a1de0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x55ba47a1f0d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x55ba47a1f0d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x55ba47a1de0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x55ba47a1de0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x55ba47a1de0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x55ba47a1de0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x55ba47a3570c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x55ba47a1f0d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x55ba47b0ee56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x55ba47b0ecf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x55ba47b397d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x55ba47b330bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x55ba47b39525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x55ba47b38a08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x55ba47b38653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x55ba47b2b41e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x55ba47b01cad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7fe8ba1c4d90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7fe8ba1c4e40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x55ba47b01ba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,    
+
+torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    _build_index_mappings(self.name, data_prefix,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    work = group.allreduce([tensor], opts)
+RuntimeError: [7] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7f2a5a9b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7f2a5a96b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7f2a1719f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7f2a1719f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7f2a1719f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f2a171582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f2a171582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f2a171582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f2a171582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7f29ca4e53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7f29ca4e8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7f29ca4f4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7f29ca4f62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7f29ca4f8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7f2a17146f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7f2a1715766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7f2a17160b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7f2a1716f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7f2a1d930c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7f2a1d140407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x5635f4361e0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x5635f43585eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x5635f43707bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x5635f43508a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x5635f4371192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x5635f434d2c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x5635f434c0d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x5635f434c0d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x5635f435782d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x5635f436c7e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x5635f435858c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x5635f4351908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x5635f434ae0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x5635f434c0d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x5635f434c0d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x5635f434ae0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x5635f434ae0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x5635f434ae0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x5635f434ae0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x5635f436270c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x5635f434c0d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x5635f443be56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x5635f443bcf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x5635f44667d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x5635f44600bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x5635f4466525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x5635f4465a08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x5635f4465653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x5635f445841e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x5635f442ecad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7f2a65c8cd90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7f2a65c8ce40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x5635f442eba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+    work = group.allreduce([tensor], opts)
+RuntimeError: [6] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7fc6e27b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7fc6e276b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7fc69ef9f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7fc69ef9f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7fc69ef9f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fc69ef582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fc69ef582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fc69ef582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fc69ef582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7fc6522e53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7fc6522e8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7fc6522f4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7fc6522f62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7fc6522f8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7fc69ef46f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7fc69ef5766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7fc69ef60b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7fc69ef6f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7fc6a5730c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7fc6a4f40407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x55bff36b5e0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x55bff36ac5eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x55bff36c47bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x55bff36a48a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x55bff36c5192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x55bff36a12c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x55bff36a00d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x55bff36a00d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x55bff36ab82d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x55bff36c07e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x55bff36ac58c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x55bff36a5908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x55bff369ee0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x55bff36a00d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x55bff36a00d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x55bff369ee0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x55bff369ee0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x55bff369ee0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x55bff369ee0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x55bff36b670c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x55bff36a00d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x55bff378fe56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x55bff378fcf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x55bff37ba7d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x55bff37b40bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x55bff37ba525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x55bff37b9a08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x55bff37b9653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x55bff37ac41e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x55bff3782cad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7fc6edaa3d90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7fc6edaa3e40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x55bff3782ba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+    build_train_valid_test_data_loaders(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+    train_dataset = build_dataset(0, 'train')
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+    dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+    _build_index_mappings(self.name, data_prefix,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    work = group.allreduce([tensor], opts)
+RuntimeError: [5] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7f0d691b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7f0d6916b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7f0d2599f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7f0d2599f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7f0d2599f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f0d259582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f0d259582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f0d259582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f0d259582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7f0cd8ce53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7f0cd8ce8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7f0cd8cf4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7f0cd8cf62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7f0cd8cf8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7f0d25946f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7f0d2595766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7f0d25960b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7f0d2596f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7f0d2c130c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7f0d2b940407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x5645d3b38e0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x5645d3b2f5eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x5645d3b477bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x5645d3b278a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x5645d3b48192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x5645d3b242c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x5645d3b230d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x5645d3b230d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x5645d3b2e82d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x5645d3b437e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x5645d3b2f58c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x5645d3b28908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x5645d3b21e0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x5645d3b230d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x5645d3b230d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x5645d3b21e0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x5645d3b21e0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x5645d3b21e0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x5645d3b21e0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x5645d3b3970c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x5645d3b230d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x5645d3c12e56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x5645d3c12cf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x5645d3c3d7d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x5645d3c370bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x5645d3c3d525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x5645d3c3ca08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x5645d3c3c653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x5645d3c2f41e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x5645d3c05cad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7f0d744edd90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7f0d744ede40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x5645d3c05ba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+    build_train_valid_test_data_loaders(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+    train_dataset = build_dataset(0, 'train')
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+    dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+    _build_index_mappings(self.name, data_prefix,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    work = group.allreduce([tensor], opts)
+RuntimeError: [2] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7fb53a3b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7fb53a36b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7fb4f6b9f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7fb4f6b9f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7fb4f6b9f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fb4f6b582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fb4f6b582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fb4f6b582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fb4f6b582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7fb4a9ee53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7fb4a9ee8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7fb4a9ef4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7fb4a9ef62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7fb4a9ef8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7fb4f6b46f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7fb4f6b5766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7fb4f6b60b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7fb4f6b6f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7fb4fd330c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7fb4fcb40407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x55fbe6efee0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x55fbe6ef55eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x55fbe6f0d7bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x55fbe6eed8a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x55fbe6f0e192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x55fbe6eea2c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x55fbe6ee90d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x55fbe6ee90d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x55fbe6ef482d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x55fbe6f097e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x55fbe6ef558c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x55fbe6eee908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x55fbe6ee7e0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x55fbe6ee90d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x55fbe6ee90d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x55fbe6ee7e0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x55fbe6ee7e0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x55fbe6ee7e0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x55fbe6ee7e0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x55fbe6eff70c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x55fbe6ee90d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x55fbe6fd8e56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x55fbe6fd8cf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x55fbe70037d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x55fbe6ffd0bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x55fbe7003525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x55fbe7002a08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x55fbe7002653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x55fbe6ff541e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x55fbe6fcbcad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7fb54568fd90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7fb54568fe40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x55fbe6fcbba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+    build_train_valid_test_data_loaders(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+    train_dataset = build_dataset(0, 'train')
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+    dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+    _build_index_mappings(self.name, data_prefix,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    work = group.allreduce([tensor], opts)
+RuntimeError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7f9b497b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7f9b4976b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7f9b05f9f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7f9b05f9f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7f9b05f9f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f9b05f582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f9b05f582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f9b05f582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7f9b05f582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7f9ab92e53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7f9ab92e8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7f9ab92f4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7f9ab92f62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7f9ab92f8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7f9b05f46f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7f9b05f5766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7f9b05f60b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7f9b05f6f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7f9b0c730c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7f9b0bf40407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x56335d908e0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x56335d8ff5eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x56335d9177bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x56335d8f78a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x56335d918192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x56335d8f42c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x56335d8f30d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x56335d8f30d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x56335d8fe82d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x56335d9137e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x56335d8ff58c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x56335d8f8908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x56335d8f1e0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x56335d8f30d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x56335d8f30d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x56335d8f1e0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x56335d8f1e0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x56335d8f1e0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x56335d8f1e0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x56335d90970c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x56335d8f30d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x56335d9e2e56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x56335d9e2cf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x56335da0d7d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x56335da070bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x56335da0d525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x56335da0ca08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x56335da0c653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x56335d9ff41e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x56335d9d5cad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7f9b54a70d90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7f9b54a70e40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x56335d9d5ba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 362, in <module>
+    pretrain(train_valid_test_datasets_provider,
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 184, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1525, in build_train_valid_test_data_iterators
+    build_train_valid_test_data_loaders(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1481, in build_train_valid_test_data_loaders
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/training.py", line 1453, in build_train_valid_test_datasets
+    return build_train_valid_test_datasets_provider(train_val_test_num_samples)
+  File "/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py", line 316, in train_valid_test_datasets_provider
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets(
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 35, in build_train_valid_test_datasets
+    return _build_train_valid_test_datasets(data_prefix[0],
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 156, in _build_train_valid_test_datasets
+    train_dataset = build_dataset(0, 'train')
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 148, in build_dataset
+    dataset = GPTDataset(name, data_prefix, documents, indexed_dataset,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 261, in __init__
+    _build_index_mappings(self.name, data_prefix,
+  File "/workspace/Megatron-DeepSpeed/megatron/data/gpt_dataset.py", line 476, in _build_index_mappings
+    torch.distributed.all_reduce(counts, group=mpu.get_data_parallel_group())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/distributed_c10d.py", line 2044, in all_reduce
+    work = group.allreduce([tensor], opts)
+RuntimeError: [4] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+Exception raised from doWait at /opt/pytorch/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:445 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x99 (0x7fac6e3b0449 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x6a (0x7fac6e36b1d8 in /usr/local/lib/python3.10/dist-packages/torch/lib/libc10.so)
+frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x28c (0x7fac20d9f23c in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2a (0x7fac20d9f50a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x7fac20d9f816 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fac20d582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fac20d582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fac20d582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x7fac20d582bf in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #9: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1fa (0x7fabd40e53da in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #10: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x228 (0x7fabd40e8908 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #11: <unknown function> + 0xe27d37 (0x7fabd40f4d37 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #12: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x7fabd40f62e1 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #13: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x421 (0x7fabd40f8121 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cuda.so)
+frame #14: <unknown function> + 0x4936f0a (0x7fac20d46f0a in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #15: <unknown function> + 0x494766f (0x7fac20d5766f in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #16: <unknown function> + 0x4950b97 (0x7fac20d60b97 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #17: <unknown function> + 0x495f1ee (0x7fac20d6f1ee in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_cpu.so)
+frame #18: <unknown function> + 0xb8cc15 (0x7fac27530c15 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #19: <unknown function> + 0x39c407 (0x7fac26d40407 in /usr/local/lib/python3.10/dist-packages/torch/lib/libtorch_python.so)
+frame #20: <unknown function> + 0x15fe0e (0x56383452fe0e in /usr/bin/python)
+frame #21: _PyObject_MakeTpCall + 0x25b (0x5638345265eb in /usr/bin/python)
+frame #22: <unknown function> + 0x16e7bb (0x56383453e7bb in /usr/bin/python)
+frame #23: _PyEval_EvalFrameDefault + 0x6152 (0x56383451e8a2 in /usr/bin/python)
+frame #24: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #25: PyObject_Call + 0x122 (0x56383453f192 in /usr/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x2b71 (0x56383451b2c1 in /usr/bin/python)
+frame #27: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #28: _PyEval_EvalFrameDefault + 0x1981 (0x56383451a0d1 in /usr/bin/python)
+frame #29: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #30: _PyEval_EvalFrameDefault + 0x1981 (0x56383451a0d1 in /usr/bin/python)
+frame #31: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #32: _PyObject_FastCallDictTstate + 0x16d (0x56383452582d in /usr/bin/python)
+frame #33: <unknown function> + 0x16a7e5 (0x56383453a7e5 in /usr/bin/python)
+frame #34: _PyObject_MakeTpCall + 0x1fc (0x56383452658c in /usr/bin/python)
+frame #35: _PyEval_EvalFrameDefault + 0x71b8 (0x56383451f908 in /usr/bin/python)
+frame #36: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #37: _PyEval_EvalFrameDefault + 0x6bd (0x563834518e0d in /usr/bin/python)
+frame #38: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #39: _PyEval_EvalFrameDefault + 0x1981 (0x56383451a0d1 in /usr/bin/python)
+frame #40: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #41: _PyEval_EvalFrameDefault + 0x1981 (0x56383451a0d1 in /usr/bin/python)
+frame #42: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #43: _PyEval_EvalFrameDefault + 0x6bd (0x563834518e0d in /usr/bin/python)
+frame #44: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #45: _PyEval_EvalFrameDefault + 0x6bd (0x563834518e0d in /usr/bin/python)
+frame #46: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #47: _PyEval_EvalFrameDefault + 0x6bd (0x563834518e0d in /usr/bin/python)
+frame #48: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #49: _PyEval_EvalFrameDefault + 0x6bd (0x563834518e0d in /usr/bin/python)
+frame #50: _PyFunction_Vectorcall + 0x7c (0x56383453070c in /usr/bin/python)
+frame #51: _PyEval_EvalFrameDefault + 0x1981 (0x56383451a0d1 in /usr/bin/python)
+frame #52: <unknown function> + 0x239e56 (0x563834609e56 in /usr/bin/python)
+frame #53: PyEval_EvalCode + 0x86 (0x563834609cf6 in /usr/bin/python)
+frame #54: <unknown function> + 0x2647d8 (0x5638346347d8 in /usr/bin/python)
+frame #55: <unknown function> + 0x25e0bb (0x56383462e0bb in /usr/bin/python)
+frame #56: <unknown function> + 0x264525 (0x563834634525 in /usr/bin/python)
+frame #57: _PyRun_SimpleFileObject + 0x1a8 (0x563834633a08 in /usr/bin/python)
+frame #58: _PyRun_AnyFileObject + 0x43 (0x563834633653 in /usr/bin/python)
+frame #59: Py_RunMain + 0x2be (0x56383462641e in /usr/bin/python)
+frame #60: Py_BytesMain + 0x2d (0x5638345fccad in /usr/bin/python)
+frame #61: <unknown function> + 0x29d90 (0x7fac6f998d90 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #62: __libc_start_main + 0x80 (0x7fac6f998e40 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #63: _start + 0x25 (0x5638345fcba5 in /usr/bin/python)
+. This may indicate a possible application crash on rank 0 or a network set up issue.
+[2023-11-08 09:06:28,121] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1976
+[2023-11-08 09:06:58,159] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1977
+[2023-11-08 09:06:58,161] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1978
+[2023-11-08 09:06:58,162] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1979
+[2023-11-08 09:06:58,162] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1980
+[2023-11-08 09:06:58,163] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1981
+[2023-11-08 09:06:58,164] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1982
+[2023-11-08 09:06:58,164] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 1983
+[2023-11-08 09:06:58,165] [ERROR] [launch.py:321:sigkill_handler] ['/usr/bin/python', '-u', '/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/../../pretrain_gpt.py', '--local_rank=7', '--override-opt_param-scheduler', '--adam-beta1', '0.9', '--adam-beta2', '0.95', '--tensor-model-parallel-size', '1', '--moe-expert-parallel-size', '1', '--num-experts', '1', '--moe-loss-coeff', '0.01', '--moe-train-capacity-factor', '1.0', '--moe-eval-capacity-factor', '1.0', '--moe-min-capacity', '4', '--init-method-std', '0.014', '--lr-decay-tokens', '260000000000', '--lr-warmup-tokens', '375000000', '--micro-batch-size', '16', '--exit-duration-in-mins', '30000000', '--global-batch-size', '1024', '--num-layers', '24', '--hidden-size', '1536', '--num-attention-heads', '16', '--seq-length', '2048', '--max-position-embeddings', '2048', '--train-tokens', '5700000000000', '--train-samples', '8349609375', '--lr', '1.5e-4', '--min-lr', '1.0e-5', '--lr-decay-style', 'cosine', '--split', '98,2,0', '--log-interval', '10', '--eval-interval', '100', '--eval-iters', '10', '--save-interval', '1000', '--weight-decay', '0.1', '--clip-grad', '1.0', '--hysteresis', '2', '--num-workers', '0', '--fp16', '--load', '/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1', '--save', '/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/checkpoint/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1', '--tensorboard-queue-size', '1', '--log-timers-to-tensorboard', '--log-batch-size-to-tensorboard', '--log-validation-ppl-to-tensorboard', '--tensorboard-dir', '/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/output/tensorboard/gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1_1b81ed102ba8_2023.11.08-08.34.02', '--checkpoint-activations', '--vocab-file', '/datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/vocab.json', '--merge-file', '/datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/merges.txt', '--data-path', '/datasets/SlimPajama-627B_megatron/gpt-neox-20b-tokenizer/train_text_document', '--data-impl', 'mmap', '--deepspeed', '--deepspeed_config', 'ds_config_gpt_gpt-0.76B-lr-1.5e-4-minlr-1.0e-5-bs-1024-gpus-8-mp-1-pp-1.json', '--pipeline-model-parallel-size', '1', '--deepspeed-activation-checkpointing'] exits with return code = 1

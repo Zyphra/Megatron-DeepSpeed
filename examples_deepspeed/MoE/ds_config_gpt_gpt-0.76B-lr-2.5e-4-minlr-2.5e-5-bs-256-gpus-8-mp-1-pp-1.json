@@ -1,17 +1,17 @@
 {
-  "train_batch_size" : CONFIG_BATCH_SIZE,
-  "train_micro_batch_size_per_gpu": CONFIG_MBSIZE,
-  "steps_per_print": LOG_INTERVAL,
+  "train_batch_size" : 256,
+  "train_micro_batch_size_per_gpu": 4,
+  "steps_per_print": 10,
 
   "zero_optimization": {
-    "stage": ZERO_STAGE
+    "stage": 0
   },
 
   "gradient_clipping": 1.0,
-  "prescale_gradients": PRESCALE_GRAD,
+  "prescale_gradients": true,
 
   "fp16": {
-    "enabled": CONFIG_FP16_ENABLED,
+    "enabled": true,
     "loss_scale": 0,
     "loss_scale_window": 500,
     "hysteresis": 2,
@@ -20,16 +20,16 @@
   },
 
   "bf16": {
-    "enabled": CONFIG_BF16_ENABLED
+    "enabled": false
   },
   "curriculum_learning": {
-    "enabled": CONFIG_CL_ENABLED,
+    "enabled": false,
     "curriculum_type": "seqlen",
-    "min_difficulty": CONFIG_CL_MIN,
-    "max_difficulty": CONFIG_CL_MAX,
+    "min_difficulty": 80,
+    "max_difficulty": 2048,
     "schedule_type": "fixed_linear",
     "schedule_config": {
-      "total_curriculum_step": CONFIG_CL_DURATION,
+      "total_curriculum_step": 220277,
       "difficulty_step": 8
     }
   },
