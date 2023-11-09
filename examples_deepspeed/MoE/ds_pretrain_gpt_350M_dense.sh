@@ -86,7 +86,7 @@ MIN_LR=3.0e-5
 ### Training duration configs
 ## The main termination condition, original GPT-3 paper trains for 300B tokens
 ## For MoE model, we found sometimes training a bit more to 330B tokens helps
-TRAIN_TOKENS=300000000000
+TRAIN_TOKENS=3000000
 # TRAIN_TOKENS=330000000000
 
 ## TRAIN_SAMPLES is another termination condition and also affect the number of 
@@ -241,16 +241,19 @@ if [ "${USE_INTERNAL_DATA}" = "true" ]; then
     0.00208 ${NIH} 0.13017 ${CC2020} 0.09446 ${PCC} 0.15652 ${CC2021} \
     0.01359 ${ARX} 0.01588 ${GIT}"
 else
-    VOCAB_PATH=/home/cirrascale/qanthony/test/gpt-neox/data/gpt2-vocab.json
-    MERGE_PATH=/home/cirrascale/qanthony/test/gpt-neox/data/gpt2-merges.txt
+    VOCAB_PATH=/mnt/shared/datasets/test_megatron/gpt2-vocab.json
+    MERGE_PATH=/mnt/shared/datasets/test_megatron/gpt2-merges.txt
     # Public the Pile dataset, can be downloaded at https://mystic.the-eye.eu/public/AI/pile_neox/
-    DATA_BLEND=/home/cirrascale/qanthony/test/gpt-neox/data/enwik8/enwik8_text_document
+    DATA_BLEND=/mnt/shared/datasets/test_megatron/redpajama-arxiv-test_text_sentence
+    DATA_CACHE=/mnt/shared/datasets/test_megatron/test_cache
 fi
 ###############################################################################
 data_options=" \
          --vocab-file ${VOCAB_PATH} \
          --merge-file ${MERGE_PATH} \
+         --tokenizer-type HFAutoTokenizer \
          --data-path ${DATA_BLEND} \
+         --data-cache-path ${DATA_CACHE} \
          --data-impl mmap"
         
 megatron_options=" \
@@ -344,7 +347,7 @@ deepspeed_options="${deepspeed_options} \
         --deepspeed-activation-checkpointing"
 fi
 
-run_cmd="deepspeed ${DIR}/../../pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options} &> ${OUTPUT_BASEPATH}/log/${NAME}_${host}_${current_time}.log"
+run_cmd="deepspeed ${DIR}/../../pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options}"
 echo ${run_cmd}
 eval ${run_cmd}
 set +x
