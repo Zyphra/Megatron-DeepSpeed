@@ -5,7 +5,7 @@ DIR=`pwd`
 ###############################################################################
 ### Main configs
 ## GPT-3 models use 2K sequence length/context window
-SEQ_LEN=2048
+SEQ_LEN=1024
 
 ### The "GPT-3 XXX" below are configs from GPT-3 paper
 ### https://arxiv.org/abs/2005.14165, choose based on
@@ -86,7 +86,7 @@ SEQ_LEN=2048
 ### Training duration configs
 ## The main termination condition, original GPT-3 paper trains for 300B tokens
 ## For MoE model, we found sometimes training a bit more to 330B tokens helps
-TRAIN_TOKENS=5700000000000
+TRAIN_TOKENS=570000000000
 # TRAIN_TOKENS=330000000000
 
 ## TRAIN_SAMPLES is another termination condition and also affect the number of 
@@ -105,8 +105,8 @@ EXIT_DURATION=30000000
 ## no need to readjust when the batch size/seqlen is changed.
 ## Original GPT-3 paper uses 375M warmup tokens and 260B decay tokens.
 ## For MoE model, we found that setting the decay token to 300B helps.
-WARMUP_TOKENS=375000000
-LR_DECAY_TOKENS=260000000000
+WARMUP_TOKENS=5700000000
+LR_DECAY_TOKENS=570000000000
 # LR_DECAY_TOKENS=300000000000
 ###############################################################################
 ### Parallelism configs
@@ -169,8 +169,8 @@ CL_STEP=$(( ${CL_TOKENS} / (${GLOBAL_BATCH_SIZE} * ${CL_AVG_SEQLEN}) ))
 ###############################################################################
 ### Misc configs
 LOG_INTERVAL=10
-EVAL_ITERS=10
-EVAL_INTERVAL=100
+EVAL_ITERS=50
+EVAL_INTERVAL=50
 SAVE_INTERVAL=1000
 
 ## Standard deviation for weight initialization
@@ -280,12 +280,12 @@ megatron_options=" \
         --lr ${LR} \
         --min-lr ${MIN_LR} \
         --lr-decay-style cosine \
-        --split 98,2,0 \
+        --split 949,50,1 \
         --log-interval ${LOG_INTERVAL} \
         --eval-interval ${EVAL_INTERVAL} \
         --eval-iters ${EVAL_ITERS} \
         --save-interval ${SAVE_INTERVAL} \
-        --weight-decay 0.1 \
+        --weight-decay 0.0 \
         --clip-grad 1.0 \
         --hysteresis 2 \
         --num-workers 0 \
@@ -296,7 +296,15 @@ megatron_options=" \
         --log-timers-to-tensorboard \
         --log-batch-size-to-tensorboard \
         --log-validation-ppl-to-tensorboard \
-        --tensorboard-dir ${TENSORBOARD_DIR}"
+        --tensorboard-dir ${TENSORBOARD_DIR} \
+        --swiglu \
+        --use-flash-attn-v2 \
+        --accumulate-allreduce-grads-in-fp32 \
+        --hidden-dropout 0.0 \
+        --lr-warmup-fraction 0.01 \
+        --attention-dropout 0.0 \
+        --recompute-activations 
+"
 
 if [ "${ACTIVATION_CHECKPOINT}" = "true" ]; then
 megatron_options="${megatron_options} \
@@ -313,7 +321,7 @@ megatron_options="${megatron_options} \
         --disable-moe-token-dropping"
 fi
 
-template_json="ds_config_gpt_TEMPLATE.json"
+template_json="/workspace/Megatron-DeepSpeed/examples_deepspeed/MoE/ds_config_gpt_TEMPLATE.json"
 config_json="ds_config_gpt_${NAME}.json"
 sed "s/CONFIG_BATCH_SIZE/${GLOBAL_BATCH_SIZE}/" ${template_json} \
     | sed "s/CONFIG_MBSIZE/${BATCH_SIZE}/" \
@@ -344,7 +352,7 @@ deepspeed_options="${deepspeed_options} \
         --deepspeed-activation-checkpointing"
 fi
 
-run_cmd="deepspeed ${DIR}/../../pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options} &> ${OUTPUT_BASEPATH}/log/${NAME}_${host}_${current_time}.log &"
+run_cmd="deepspeed /workspace/Megatron-DeepSpeed/pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options} &> ${OUTPUT_BASEPATH}/log/${NAME}_${host}_${current_time}.log &"
 echo ${run_cmd}
 eval ${run_cmd}
 set +x
