@@ -1,4 +1,6 @@
 #!/bin/bash
+export CXX=g++
+export CC=gcc
 DIR=`pwd`
 ###############################################################################
 ### Main configs
@@ -10,20 +12,20 @@ SEQ_LEN=1024
 ### your desired model size or build your own configs
 
 ## GPT-3 Small 125M
-MODEL_SIZE=0.125
-NUM_LAYERS=12
-HIDDEN_SIZE=768
-NUM_ATTN_HEADS=12
-GLOBAL_BATCH_SIZE=1024
+# MODEL_SIZE=0.125
+# NUM_LAYERS=12
+# HIDDEN_SIZE=768
+# NUM_ATTN_HEADS=12
+# GLOBAL_BATCH_SIZE=256
 # LR=6.0e-4
 # MIN_LR=6.0e-5
 
 ## GPT-3 Medium 350M
-# MODEL_SIZE=0.35
-# NUM_LAYERS=24
-# HIDDEN_SIZE=1024
-# NUM_ATTN_HEADS=16
-# GLOBAL_BATCH_SIZE=256
+MODEL_SIZE=0.35
+NUM_LAYERS=12
+HIDDEN_SIZE=768
+NUM_ATTN_HEADS=12
+GLOBAL_BATCH_SIZE=1024
 # LR=3.0e-4
 # MIN_LR=3.0e-5
 
@@ -84,7 +86,7 @@ GLOBAL_BATCH_SIZE=1024
 ### Training duration configs
 ## The main termination condition, original GPT-3 paper trains for 300B tokens
 ## For MoE model, we found sometimes training a bit more to 330B tokens helps
-TRAIN_TOKENS=570000000000
+TRAIN_TOKENS=300000000000
 # TRAIN_TOKENS=330000000000
 
 ## TRAIN_ITERS is another termination condition and also affect the number of 
@@ -103,8 +105,9 @@ EXIT_DURATION=30000000
 ## no need to readjust when the batch size/seqlen is changed.
 ## Original GPT-3 paper uses 375M warmup tokens and 260B decay tokens.
 ## For MoE model, we found that setting the decay token to 300B helps.
-WARMUP_TOKENS=5700000000
-LR_DECAY_TOKENS=570000000000
+WARMUP_TOKENS=375000000
+# LR_DECAY_TOKENS=260000000000
+LR_DECAY_TOKENS=300000000000
 ###############################################################################
 ### Parallelism configs
 ## Micro batch size per GPU
@@ -118,9 +121,7 @@ MP_SIZE=1
 ## Currently we don't support PP for MoE. To disable PP, set PP_SIZE
 ## to 1 and use the "--no-pipeline-parallel" arg.
 PP_SIZE=1
-NUM_GPUS=$(($(ds_ssh nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)-2))
-NUM_GPUS_PERNODE=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
-NUM_NODE=$(( ${NUM_GPUS} / ${NUM_GPUS_PERNODE} ))
+NUM_GPUS=8
 ###############################################################################
 ### MoE configs
 ## Number of experts. EP_SIZE 1 means dense model without MoE
@@ -170,8 +171,7 @@ CL_STEP=$(( ${CL_TOKENS} / (${GLOBAL_BATCH_SIZE} * ${CL_AVG_SEQLEN}) ))
 LOG_INTERVAL=10
 EVAL_ITERS=50
 EVAL_INTERVAL=50
-SAVE_INTERVAL=1000
-
+SAVE_INTERVAL=10000
 
 ## Standard deviation for weight initialization
 ## We used 0.014 for 350M/1.3B dense/MoE models, and used 0.01 for 6.7B
@@ -236,7 +236,7 @@ if [ "${USE_INTERNAL_DATA}" = "true" ]; then
     SE="${DATA_HOME}/StackExchange_ftfy_id_shuf_text_document"
     ST="${DATA_HOME}/stories_dedup0.7_shuf_cleaned_shuf_text_document"
     WIK="${DATA_HOME}/Wikipedia_en_ftfy_id_shuf_text_document"
-    DATA_PATH="0.14336 ${B3} 0.08962 ${RN} 0.19336 ${OWT2} 0.05689 ${SE} \
+    DATA_BLEND="0.14336 ${B3} 0.08962 ${RN} 0.19336 ${OWT2} 0.05689 ${SE} \
     0.00859 ${ST} 0.02897 ${PM} 0.04771 ${WIK} 0.00873 ${GUT} 0.01007 ${BC2} \
     0.00208 ${NIH} 0.13017 ${CC2020} 0.09446 ${PCC} 0.15652 ${CC2021} \
     0.01359 ${ARX} 0.01588 ${GIT}"
@@ -250,7 +250,7 @@ fi
 data_options=" \
          --vocab-file ${VOCAB_PATH} \
          --merge-file ${MERGE_PATH} \
-         --data-path ${DATA_PATH} \
+         --data-path ${DATA_BLEND} \
          --data-impl mmap"
         
 megatron_options=" \
@@ -280,7 +280,7 @@ megatron_options=" \
         --lr ${LR} \
         --min-lr ${MIN_LR} \
         --lr-decay-style cosine \
-        --split 949,50,1 \
+        --split 98,2,0 \
         --log-interval ${LOG_INTERVAL} \
         --eval-interval ${EVAL_INTERVAL} \
         --eval-iters ${EVAL_ITERS} \
@@ -303,8 +303,7 @@ megatron_options=" \
         --hidden-dropout 0.0 \
         --lr-warmup-fraction 0.01 \
         --attention-dropout 0.0 \
-        --recompute-activations
-        "
+        --recompute-activations "
 
 if [ "${ACTIVATION_CHECKPOINT}" = "true" ]; then
 megatron_options="${megatron_options} \
@@ -326,10 +325,10 @@ config_json="ds_config_gpt_${NAME}.json"
 sed "s/CONFIG_BATCH_SIZE/${GLOBAL_BATCH_SIZE}/" ${template_json} \
     | sed "s/CONFIG_MBSIZE/${BATCH_SIZE}/" \
     | sed "s/LOG_INTERVAL/${LOG_INTERVAL}/" \
-    | sed "s/ZERO_STAGE/0/" \
-    | sed "s/PRESCALE_GRAD/true/" \
-    | sed "s/CONFIG_FP16_ENABLED/true/" \
-    | sed "s/CONFIG_BF16_ENABLED/false/" \
+    | sed "s/ZERO_STAGE/1/" \
+    | sed "s/PRESCALE_GRAD/false/" \
+    | sed "s/CONFIG_FP16_ENABLED/false/" \
+    | sed "s/CONFIG_BF16_ENABLED/true/" \
     | sed "s/CONFIG_CL_ENABLED/${CL_ENABLED}/" \
     | sed "s/CONFIG_CL_MIN/${CL_START_SEQLEN}/" \
     | sed "s/CONFIG_CL_MAX/${SEQ_LEN}/" \
@@ -342,36 +341,17 @@ deepspeed_options=" \
 		    --pipeline-model-parallel-size ${PP_SIZE}"
 
 # Currently MoE is not compatible with pipeline parallel
-if [[ $EP_SIZE -gt 1 ]]; then
+#if [[ $EP_SIZE -gt 1 ]]; then
 deepspeed_options="${deepspeed_options} \
         --no-pipeline-parallel"
-fi
+#fi
 
 if [ "${ACTIVATION_CHECKPOINT}" = "true" ]; then
 deepspeed_options="${deepspeed_options} \
         --deepspeed-activation-checkpointing"
 fi
 
-## When saving checkpoint to a storage with cache, their could be consistency
-## issue of the pointer to latest checkpoint. Here we find the correct pointer
-## and broadcast it to all nodes.
-ITERATION_FILE="$CHECKPOINT_PATH/latest_checkpointed_iteration.txt"
-ITERATION_FILE_2="$CHECKPOINT_PATH/latest"
-ITERATION=0
-for (( node = 0; node <= NUM_NODE-1; node++ ))
-do
-    if $(ssh -q worker-"$node" "test -f \"$ITERATION_FILE\""); then
-        LOCAL_ITERATION=$(ssh -q worker-"$node" cat $ITERATION_FILE)
-        ITERATION=$(( ${LOCAL_ITERATION} > ${ITERATION} ? ${LOCAL_ITERATION} :  ${ITERATION} ))
-    fi
-done
-if [[ $ITERATION -gt 0 ]]; then
-    ITERATION_2="global_step${ITERATION}"
-    ds_ssh "echo $ITERATION > $ITERATION_FILE"
-    ds_ssh "echo $ITERATION_2 > $ITERATION_FILE_2"
-fi
-
-run_cmd="deepspeed /workspace/Megatron-DeepSpeed/pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options} &> ${OUTPUT_BASEPATH}/log/${NAME}_${host}_${current_time}.log &"
+run_cmd="deepspeed ${DIR}/../../pretrain_gpt.py ${megatron_options} ${data_options} ${deepspeed_options} &> ${OUTPUT_BASEPATH}/log/${NAME}_${host}_${current_time}.log &"
 echo ${run_cmd}
 eval ${run_cmd}
 set +x
