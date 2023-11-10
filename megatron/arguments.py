@@ -1245,8 +1245,11 @@ def _add_data_args(parser):
                                 'GPT2BPETokenizer',
                                 'SentencePieceTokenizer',
                                 'GPTSentencePieceTokenizer',
+                                'HFAutoTokenizer',                                
                                 'NullTokenizer'],
                        help='What type of tokenizer to use.')
+    group.add_argument('--hf_autotokenizer_model', type=str, default=None,
+                       help='Name of HF tokenizer model.')                       
     group.add_argument('--tokenizer-model', type=str, default=None,
                        help='Sentencepiece tokenizer model.')
     group.add_argument('--data-impl', type=str, default='infer',
